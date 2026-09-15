@@ -8,8 +8,7 @@ This replaces a previous setup: one paid x86_64 VM, hand-configured over SSH wit
 
 - `terraform/` — OCI infrastructure (network, firewall, the VM itself) via the `oracle/oci` provider
 - `cloud-init/` — first-boot provisioning (Docker + Coolify install)
-- `docs/` — architecture, one-time bootstrap steps, day-2 runbook, and the planifik migration record
-- `scripts/` — Postgres dump/restore helpers used during the planifik cutover
+- `docs/` — architecture, one-time bootstrap steps, and a day-2 runbook
 
 ## Getting started
 
