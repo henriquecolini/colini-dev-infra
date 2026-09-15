@@ -6,13 +6,16 @@
 # must be filled in by hand (or overridden with -backend-config flags) before
 # the first `tofu init`. The bucket itself must already exist — see
 # docs/bootstrap.md for the one-time manual creation steps. Credentials come
-# from AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY env vars, set to an OCI
-# Customer Secret Key (NOT your OCI API key) — never hardcode them here.
+# from the "colini-dev-infra" profile in ~/.aws/credentials, holding an OCI
+# Customer Secret Key (NOT your OCI API key) — never hardcode them here. A
+# named profile, not [default], so this never collides with unrelated AWS/S3
+# tool usage later.
 terraform {
   backend "s3" {
-    bucket = "colini-dev-tfstate"
-    key    = "colini-dev/terraform.tfstate"
-    region = "sa-saopaulo-1"
+    bucket  = "colini-dev-tfstate"
+    key     = "colini-dev/terraform.tfstate"
+    region  = "sa-saopaulo-1"
+    profile = "colini-dev-infra"
 
     skip_region_validation      = true
     skip_credentials_validation = true
