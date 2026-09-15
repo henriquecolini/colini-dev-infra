@@ -12,7 +12,7 @@ terraform {
   backend "s3" {
     bucket = "colini-dev-tfstate"
     key    = "colini-dev/terraform.tfstate"
-    region = "us-ashburn-1" # <-- set to your home region
+    region = "sa-saopaulo-1"
 
     skip_region_validation      = true
     skip_credentials_validation = true
@@ -23,8 +23,7 @@ terraform {
     use_lockfile                = true # verify this actually works against OCI before relying on it (see docs/bootstrap.md)
 
     endpoints = {
-      # <-- replace <namespace> and region; get the namespace via `oci os ns get`
-      s3 = "https://<namespace>.compat.objectstorage.us-ashburn-1.oraclecloud.com"
+      s3 = "https://grial0cmovcg.compat.objectstorage.sa-saopaulo-1.oraclecloud.com"
     }
   }
 }
