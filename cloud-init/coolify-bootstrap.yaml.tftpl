@@ -1,0 +1,20 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+runcmd:
+  # Docker via the official convenience script (works on Ubuntu ARM64).
+  - curl -fsSL https://get.docker.com | sh
+  - systemctl enable --now docker
+
+  # Coolify's official installer. Verify this URL is still current against
+  # https://coolify.io/docs/get-started/installation before first use —
+  # install script URLs occasionally change.
+  - curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
+
+  # Coolify's own firewall setup opens what it needs locally, but OCI images
+  # also enable an OS-level firewall (ufw on Ubuntu) by default. The NSG in
+  # terraform/security.tf handles perimeter rules; if ufw is active on this
+  # image, mirror those same ports (22, 80, 443, 8000, 6001, 6002) with
+  # `ufw allow` so traffic that passes the NSG isn't dropped a second time
+  # at the OS level. Check `ufw status` after boot.
