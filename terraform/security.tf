@@ -37,6 +37,9 @@ locals {
     dogbot_sftp = {
       min = 2222, max = 2222, protocol = "tcp", cidr = "0.0.0.0/0", desc = "dogbot SFTP (chat filesystem mounts)"
     }
+    game_udp_27015 = {
+      min = 27015, max = 27015, protocol = "udp", cidr = "0.0.0.0/0", desc = "Game server (UDP 27015)"
+    }
   }
 
   tcp_ingress_rules = { for k, v in local.ingress_rules : k => v if v.protocol == "tcp" }
