@@ -34,6 +34,9 @@ locals {
     coolify_terminal = {
       min = 6002, max = 6002, protocol = "tcp", cidr = var.admin_cidr, desc = "Coolify web terminal"
     }
+    dogbot_sftp = {
+      min = 2222, max = 2222, protocol = "tcp", cidr = "0.0.0.0/0", desc = "dogbot SFTP (chat filesystem mounts)"
+    }
   }
 
   tcp_ingress_rules = { for k, v in local.ingress_rules : k => v if v.protocol == "tcp" }
